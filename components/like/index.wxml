@@ -1,0 +1,3 @@
+<!--components/like/index.wxml-->
+<!-- <text>这是 like 组件</text> -->
+<image class='img-like' src='images/like.png' alt='喜欢'></image>
