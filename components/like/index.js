@@ -30,8 +30,11 @@ Component({
   methods: {
     onLike(event) {
       console.log('被点击了')
+      var like = !this.data.like
+      var number = like?(this.data.count + 0 + 1):(this.data.count + 0 - 1)
       this.setData({
-        like: !this.data.like
+        count: number,
+        like: like
       })
     }
   }

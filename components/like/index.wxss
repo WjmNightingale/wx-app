@@ -1,9 +1,30 @@
 /* components/like/index.wxss */
-.page {
-    font-family: "";
-    font-size: 36px;
+
+/* 小程序页面全局样式 -- page */
+
+page {
+    /* iOs "PingFangSC-Thin" */
+    /* android 思源 */
+    font-family: "Source Han Sans CN";
+    font-size: 32rpx;
 }
-.img-like {
+
+.container {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 10rpx;
+}
+
+.container .img {
     width: 32rpx;
     height: 28rpx;
+}
+
+.container .number {
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #111;
+    position: relative;
+    left: 6rpx;
+    bottom: 10rpx;
 }
