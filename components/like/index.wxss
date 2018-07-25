@@ -1,4 +1,8 @@
 /* components/like/index.wxss */
+.page {
+    font-family: "";
+    font-size: 36px;
+}
 .img-like {
     width: 32rpx;
     height: 28rpx;
