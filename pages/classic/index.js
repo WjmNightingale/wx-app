@@ -12,7 +12,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
+    wx.request({
+      url: 'http://bl.7yue.pro/v1/classic/latest',
+      header: {
+        appkey: 'AmYiUAfV5l88OjyM'
+      }
+    })
   },
 
   /**
