@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(config)
     // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
     var http = new HTTP()
     http.request({
@@ -23,7 +22,9 @@ Page({
       data: '',
       method: 'GET',
       success: (res) => {
-        console.log(res.data)
+        console.log(typeof res.data)
+        this.setData(res.data)
+        console.log(this.data)
       },
       fail: (err) => {
         console.log(err)
@@ -32,6 +33,7 @@ Page({
         console.log('请求调用完毕')
       }
     })
+   
     // wx.request({
     //   url: 'http://bl.7yue.pro/v1/classic/latest',
     //   header: {
