@@ -18,8 +18,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    likeSrc: 'images/love.png',
-    disLikeSrc: 'images/dislove.png'
+    likeSrc: 'images/like.png',
+    disLikeSrc: 'images/disLike.png'
   },
 
   /**
