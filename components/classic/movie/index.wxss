@@ -15,8 +15,20 @@ page {
   align-items: center;
 }
 
+.container .movie-img {
+  width: 750rpx;
+  height: 500rpx;
+}
+
 .container .tab-img {
   width: 46rpx;
   height: 142rpx;
   position: relative;
+  bottom: 58rpx;
+  right: 310rpx;
+}
+
+.container .movie-content {
+  font-size: 36rpx;
+  max-width: 550rpx;
 }
