@@ -1,0 +1,22 @@
+/* components/movie/index.wxss */
+
+/* 小程序页面 全局样式 -- page */
+
+page {
+  /* iOs 默认字体 "PingFangSC-Thin" */
+  /* android 默认字体 思源 */
+  font-family: "Source Han Sans CN";
+  font-size: 32rpx;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .tab-img {
+  width: 46rpx;
+  height: 142rpx;
+  position: relative;
+}
