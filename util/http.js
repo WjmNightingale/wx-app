@@ -1,6 +1,12 @@
 import {
     config
 } from '../config.js'
+
+const tips = {
+    1: '抱歉，出现了未知错误',
+    1005: 'app-key 无效，请前往 www.7yue.pro 申请',
+    3000: '期刊不存在'
+}
 class HTTP {
     request(params) {
         if (!params.method) {
@@ -21,14 +27,25 @@ class HTTP {
                     params.success && params.success(res)
                 } else {
                     // 服务器异常
+                    let error_code = res.data.error_code
+                    this._show_error(error_code)
                 }
             },
-            fail: (err) => {
-                console.log(err)
+            fail: () => {
+                this._show_error()
             },
             complete: () => {
                 console.log('请求发送完毕')
             }
+        })
+    }
+
+    _show_error(error_code) {
+        error_code = error_code || 1
+        wx.showToast({
+            title: tips[error_code],
+            icon: 'none',
+            duration: 2000
         })
     }
 }
