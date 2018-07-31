@@ -18,7 +18,7 @@ class HTTP {
                 let code = res.statusCode
                 if ((code + '').startsWith('2')) {
                     // 服务器成功响应
-                    params.success(res)
+                    params.success && params.success(res)
                 } else {
                     // 服务器异常
                 }

@@ -10,6 +10,7 @@ page {
 }
 
 /* 小程序页面 自定义样式 */
+
 .container {
   display: inline-flex;
   flex-direction: row;

@@ -2,14 +2,19 @@
 import {
   ClassicModel
 } from '../../models/classic.js'
-let classic = new ClassicModel()
+import {
+  LikeModel
+} from "../../models/like.js";
+let classicModel = new ClassicModel()
+let likeModel = new LikeModel()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    // 默认值
+    classic: null
   },
 
   /**
@@ -17,12 +22,17 @@ Page({
    */
   onLoad: function (options) {
     // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
-    classic.getLatest((data) => {
+    classicModel.getLatest((data) => {
+      // 数据更新
       this.setData({
         classic: data
       })
     })
-    console.log(this.data)
+  },
+  onLike: function (event) {
+    console.log(event)
+    let behavior = event.detail.behavior
+    likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
 
   /**
