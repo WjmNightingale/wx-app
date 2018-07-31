@@ -1,7 +1,8 @@
 // pages/classic/index.js
 import {
-  HTTP
-} from '../../util/http.js'
+  ClassicModel
+} from '../../models/classic.js'
+let classic = new ClassicModel()
 Page({
 
   /**
@@ -16,33 +17,12 @@ Page({
    */
   onLoad: function (options) {
     // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
-    var http = new HTTP()
-    http.request({
-      url: 'classic/latest',
-      data: '',
-      method: 'GET',
-      success: (res) => {
-        console.log(typeof res.data)
-        this.setData(res.data)
-        console.log(this.data)
-      },
-      fail: (err) => {
-        console.log(err)
-      },
-      complete: () => {
-        console.log('请求调用完毕')
-      }
+    classic.getLatest((data) => {
+      this.setData({
+        classic: data
+      })
     })
-   
-    // wx.request({
-    //   url: 'http://bl.7yue.pro/v1/classic/latest',
-    //   header: {
-    //     appkey: 'AmYiUAfV5l88OjyM'
-    //   },
-    //   success: (res) => {
-    //     console.log(res.data)
-    //   }
-    // })
+    console.log(this.data)
   },
 
   /**

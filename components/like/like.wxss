@@ -1,0 +1,31 @@
+/* components/like/like.wxss */
+
+/* 小程序页面 全局样式 -- page */
+
+page {
+  /* iOs 默认字体 "PingFangSC-Thin" */
+  /* android 默认字体 思源 */
+  font-family: "Source Han Sans CN";
+  font-size: 32rpx;
+}
+
+/* 小程序页面 自定义样式 */
+.container {
+  display: inline-flex;
+  flex-direction: row;
+  padding: 10rpx;
+}
+
+.container .like-img {
+  width: 32rpx;
+  height: 28rpx;
+}
+
+.container .like-count {
+  position: relative;
+  left: 6rpx;
+  bottom: 10rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #333;
+}

@@ -1,0 +1,5 @@
+<!--like 组件-->
+<view class="container" bind:tap="onLike">
+  <image class="like-img" src="{{like ? likeSrc : disLikeSrc}}" alt="喜欢"></image>
+  <text class="like-count">{{count}}</text>
+</view>

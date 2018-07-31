@@ -1,6 +1,0 @@
-<!--components/like/index.wxml-->
-<!--  like 组件  -->
-<view class="container" bind:tap="onLike">
-    <image class="img" src="{{like?likeSrc:disLikeSrc}}" alt='喜欢'></image>
-    <text class="number">{{count}}</text>
-</view>
