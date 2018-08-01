@@ -1,14 +1,11 @@
-// components/movie/index.js
+// components/epsoide/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    movieImgSrc: {
-      type: String
-    },
-    movieContent: {
-      type: String
+    index: {
+      type: Number
     }
   },
 
@@ -16,7 +13,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    tabImgSrc: 'img/movie@tag.png'
+    year: 2018,
+    month: '三月'
   },
 
   /**
@@ -24,5 +22,8 @@ Component({
    */
   methods: {
 
+  },
+  attached() {
+    console.log(this.data)
   }
 })

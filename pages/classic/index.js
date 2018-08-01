@@ -29,6 +29,7 @@ Page({
       })
     })
   },
+  // 点赞操作
   onLike: function (event) {
     console.log(event)
     let behavior = event.detail.behavior

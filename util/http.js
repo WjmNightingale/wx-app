@@ -21,8 +21,8 @@ class HTTP {
                 'appkey': config.appkey
             },
             success: (res) => {
-                let code = res.statusCode
-                if ((code + '').startsWith('2')) {
+                let code = res.statusCode + ''
+                if (code.startsWith('2')) {
                     // 服务器成功响应
                     params.success && params.success(res)
                 } else {
