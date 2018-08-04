@@ -9,6 +9,6 @@
     "navigationBarTitleText": "浮生半日游",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
-    "backgroundColor": "yellow"
+    "backgroundColor": "skyblue"
   }
 }

@@ -14,7 +14,9 @@ Page({
    */
   data: {
     // 默认值
-    classic: null
+    classic: null,
+    first: true,
+    latest: false
   },
 
   /**
