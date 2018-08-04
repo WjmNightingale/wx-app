@@ -30,5 +30,5 @@
 
 .nav {
   position: absolute;
-  bottom: 20rpx;
+  bottom: 140rpx;
 }

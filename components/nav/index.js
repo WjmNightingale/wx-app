@@ -32,7 +32,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onLeft() {
+      if (!this.properties.first) {
+        this.triggerEvent('left', {}, {})
+      }
+    },
+    onRight() {
+      if (!this.properties.latest) {
+        this.triggerEvent('right', {}, {})
+      }
+    }
   },
   attached() {
     console.log(this.data)
