@@ -1,22 +1,18 @@
 // components/movie/index.js
+import {
+  classicBehavior
+} from '../classic-behavior.js'
 Component({
+  behaviors: [classicBehavior],
   /**
    * 组件的属性列表
    */
-  properties: {
-    movieImgSrc: {
-      type: String
-    },
-    movieContent: {
-      type: String
-    }
-  },
-
+  properties: {},
   /**
    * 组件的初始数据
    */
   data: {
-    tabImgSrc: 'img/movie@tag.png'
+    tabImg: 'img/movie@tag.png'
   },
 
   /**

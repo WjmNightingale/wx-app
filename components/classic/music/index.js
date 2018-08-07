@@ -1,16 +1,13 @@
 // components/classic/music/index.js
+import {
+  classicBehavior
+} from '../classic-behavior.js'
 Component({
+  behaviors: [classicBehavior],
   /**
    * 组件的属性列表
    */
-  properties: {
-    musicImgSrc: {
-      type: String
-    },
-    musicContent: {
-      type: String
-    }
-  },
+  properties: {},
 
   /**
    * 组件的初始数据

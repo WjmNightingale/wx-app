@@ -3,7 +3,7 @@
     <v-date class="date" index="{{classic.index}}" />
     <v-like class="like" like="{{!!classic.like_status}}" count="{{classic.fav_nums}}" bind:like="onLike" />
   </view>
-  <v-movie movieImgSrc="{{classic.image}}" movieContent="{{classic.content}}" />
+  <v-movie img="{{classic.image}}" content="{{classic.content}}" />
   <v-nav bind:left="onNext" bind:right="onPrevious" class="nav" title="{{classic.title}}" first="{{first}}" latest="{{latest}}"
   />
 </view>
