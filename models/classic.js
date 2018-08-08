@@ -8,8 +8,9 @@ class ClassicModel extends HTTP {
       url: 'classic/latest',
       success: (res) => {
         // console.log(res.data)
-        sCallback(res.data)
-        this._setLatestIndex(res.data.index)
+        sCallback(res)
+        this._setLatestIndex(res.index)
+        wx.setStorageSync(this._getKey(res.index), res)
       }
     })
   }
@@ -18,7 +19,7 @@ class ClassicModel extends HTTP {
     this.request({
       url: `classic/${index}/previous`,
       success: (res) => {
-        sCallback(res.data)
+        sCallback(res)
       }
     })
   }
@@ -27,18 +28,28 @@ class ClassicModel extends HTTP {
     this.request({
       url: `classic/${index}/next`,
       success: (res) => {
-        sCallback(res.data)
+        sCallback(res)
       }
     })
   }
 
   getClassic(index, nextOrPrevious, sCallback) {
-    this.request({
-      url: `classic/${index}/${nextOrPrevious}`,
-      success: (res) => {
-        sCallback(res.data)
-      }
-    })
+    // 缓存机制 有缓存，用缓存数据，没缓存，API获取数据
+    // 确定缓存的key值
+    let key = nextOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
+    let classic = wx.getStorageSync(key)
+    if (!classic) {
+      this.request({
+        url: `classic/${index}/${nextOrPrevious}`,
+        success: (res) => {
+          wx.setStorageSync(this._getKey(res.index), res)
+          sCallback(res)
+        }
+      })
+    } else {
+      console.log('有缓存取缓存值')
+      sCallback(classic)
+    }
   }
 
   isFirst(index) {
@@ -56,6 +67,10 @@ class ClassicModel extends HTTP {
 
   _getLatestIndex() {
     return wx.getStorageSync('latest')
+  }
+
+  _getKey(index) {
+    return `classic-${index}`
   }
 }
 

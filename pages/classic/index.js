@@ -16,7 +16,9 @@ Page({
     // 默认值
     classic: null,
     first: false,
-    latest: true
+    latest: true,
+    likeCount: 0,
+    likeStatus: false
   },
 
   /**
@@ -24,17 +26,19 @@ Page({
    */
   onLoad: function (options) {
     // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
-    classicModel.getLatest((data) => {
+    classicModel.getLatest((res) => {
       // 数据更新
       this.setData({
-        classic: data
+        classic: res,
+        likeCount: res.fav_nums,
+        likeStatus: !!res.like_status
       })
       // latestClassic latestIndex currentClassic currentIndex
     })
   },
   // 点赞操作
   onLike: function (event) {
-    console.log(event)
+    // console.log(event)
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
@@ -46,13 +50,24 @@ Page({
   },
   _updateClassic(nextOrPrevious) {
     let index = this.data.classic.index
-    classicModel.getClassic(index, nextOrPrevious, (data) => {
-      let isFirst = classicModel.isFirst(data.index)
-      let isLatest = classicModel.isLatest(data.index)
+    classicModel.getClassic(index, nextOrPrevious, (res) => {
+      this._getLikeStatus(res.id, res.type)
+      let isFirst = classicModel.isFirst(res.index)
+      let isLatest = classicModel.isLatest(res.index)
       this.setData({
-        classic: data,
+        classic: res,
         first: isFirst,
         latest: isLatest
+      })
+    })
+  },
+  _getLikeStatus(artID, category) {
+    likeModel.getClassicLikeStatus(artID, category, (res) => {
+      // console.log('喜欢的状态--')
+      // console.log(res)
+      this.setData({
+        likeCount: res.fav_nums,
+        likeStatus: !!res.like_status
       })
     })
   },

@@ -24,7 +24,7 @@ class HTTP {
                 let code = res.statusCode + ''
                 if (code.startsWith('2')) {
                     // 服务器成功响应
-                    params.success && params.success(res)
+                    params.success && params.success(res.data)
                 } else {
                     // 服务器异常
                     let error_code = res.data.error_code
