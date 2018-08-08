@@ -1,2 +1,7 @@
 <!--components/classic/essay/index.wxml-->
 <text>components/classic/essay/index.wxml</text>
+<view class="container">
+  <image class="essay-img" src="{{img}}"></image>
+  <image class="tab-img" src="{{tabImg}}"></image>
+  <text class="essay-content">{{content}}</text>
+</view>

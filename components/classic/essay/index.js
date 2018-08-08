@@ -15,7 +15,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    tabImg: 'img/essay@tag.png'
   },
 
   /**

@@ -33,13 +33,13 @@ Component({
    */
   methods: {
     onLeft() {
-      if (!this.properties.first) {
+      if (!this.properties.latest) {
         console.log('左移')
         this.triggerEvent('left', {}, {})
       }
     },
     onRight() {
-      if (!this.properties.latest) {
+      if (!this.properties.first) {
         console.log('右移')
         this.triggerEvent('right', {}, {})
       }

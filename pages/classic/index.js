@@ -15,8 +15,8 @@ Page({
   data: {
     // 默认值
     classic: null,
-    first: true,
-    latest: false
+    first: false,
+    latest: true
   },
 
   /**
@@ -29,6 +29,7 @@ Page({
       this.setData({
         classic: data
       })
+      // latestClassic latestIndex currentClassic currentIndex
     })
   },
   // 点赞操作
@@ -37,8 +38,24 @@ Page({
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
-  onNext() {},
-  onPrevious() {},
+  onNext() {
+    this._updateClassic('next')
+  },
+  onPrevious() {
+    this._updateClassic('previous')
+  },
+  _updateClassic(nextOrPrevious) {
+    let index = this.data.classic.index
+    classicModel.getClassic(index, nextOrPrevious, (data) => {
+      let isFirst = classicModel.isFirst(data.index)
+      let isLatest = classicModel.isLatest(data.index)
+      this.setData({
+        classic: data,
+        first: isFirst,
+        latest: isLatest
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
