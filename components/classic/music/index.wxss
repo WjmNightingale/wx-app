@@ -18,7 +18,7 @@
   width: 120rpx;
   height: 120rpx;
   position: relative;
-  bottom: 380rpx;
+  bottom: 271rpx;
 }
 
 .container .tag {

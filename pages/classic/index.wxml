@@ -4,7 +4,8 @@
     <v-like class="like" like="{{likeStatus}}" count="{{likeCount}}" bind:like="onLike" />
   </view>
   <v-movie isHidden="{{classic.type !== 100}}" img="{{classic.image}}" content="{{classic.content}}" />
-  <v-music isHidden="{{classic.type !== 200}}" img="{{classic.image}}" content="{{classic.content}}" />
+  <v-music isHidden="{{classic.type !== 200}}" img="{{classic.image}}" content="{{classic.content}}" audioSrc="{{classic.url}}"
+  />
   <v-essay isHidden="{{classic.type !== 300}}" img="{{classic.image}}" content="{{classic.content}}" />
   <v-nav bind:left="onNext" bind:right="onPrevious" class="nav" title="{{classic.title}}" first="{{first}}" latest="{{latest}}"
   />
