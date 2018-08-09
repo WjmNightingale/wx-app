@@ -1,7 +1,3 @@
-/* components/movie/index.wxss */
-
-/* 小程序页面 全局样式 -- page */
-
 page {
   /* iOs 默认字体 "PingFangSC-Thin" */
   /* android 默认字体 思源 */

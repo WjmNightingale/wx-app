@@ -1,5 +1,8 @@
 let classicBehavior = Behavior({
   properties: {
+    isHidden: {
+      type: Boolean
+    },
     img: {
       type: String
     },

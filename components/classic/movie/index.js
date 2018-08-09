@@ -12,7 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    tabImg: 'img/movie@tag.png'
+    tagImg: 'img/movie@tag.png'
   },
 
   /**

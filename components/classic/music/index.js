@@ -13,8 +13,10 @@ Component({
    * 组件的初始数据
    */
   data: {
+    tagImg: 'img/music@tag.png',
     playImg: 'img/player@playing.png',
-    pauseImg: 'img/player@waiting.png'
+    pauseImg: 'img/player@waiting.png',
+    isPlay: false
   },
 
   /**

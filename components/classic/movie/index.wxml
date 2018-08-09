@@ -1,5 +1,5 @@
-<view class="container">
-  <image class="movie-img" src="{{img}}"></image>
-  <image class="tab-img" src="{{tabImg}}"></image>
-  <text class="movie-content">{{content}}</text>
+<view hidden="{{isHidden}}" class="container">
+  <image class="img" src="{{img}}"></image>
+  <image class="tag" src="{{tagImg}}"></image>
+  <text class="content">{{content}}</text>
 </view>
