@@ -47,7 +47,7 @@ class ClassicModel extends HTTP {
         }
       })
     } else {
-      console.log('有缓存取缓存值')
+      // 取缓存值
       sCallback(classic)
     }
   }

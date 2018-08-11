@@ -35,7 +35,7 @@ class HTTP {
                 this._show_error()
             },
             complete: () => {
-                console.log('请求发送完毕')
+                // console.log('请求发送完毕')
             }
         })
     }

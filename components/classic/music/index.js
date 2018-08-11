@@ -77,12 +77,10 @@ Component({
   // 组件生命周期
   attached() {
     // 在组件实例进入页面节点树时执行
-    console.log('音乐组件start')
     this._recoverStatus()
     this._monitorSwitch()
   },
   detached() {
-    console.log('音乐组件注销')
     // 在组件实例被从页面节点树移除时执行
   }
 })

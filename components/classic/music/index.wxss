@@ -1,5 +1,7 @@
 /* components/classic/music/index.wxss */
 
+/* 组件属性动画 小程序动画API CSS3 Canvas 游戏 */
+
 @import '../common.wxss';
 .container {
   display: flex;
@@ -27,4 +29,21 @@
   position: relative;
   bottom: 160rpx;
   right: 300rpx;
+}
+
+.rotation {
+  -webkit-transform: rotate(360deg);
+  animation: rotation 12s linear infinite;
+  -moz-animation: rotation 12s linear infinite;
+  -webkit-animation: rotation 12s linear infinite;
+  -o-animation: rotation 12s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
