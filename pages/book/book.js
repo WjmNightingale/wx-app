@@ -23,8 +23,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    bookModel.getHotBook().then((res) => {
-      console.log(res)
+    bookModel.getHotList().then((res) => {
+      // console.log(res)
       this.setData({
         books: res
       })

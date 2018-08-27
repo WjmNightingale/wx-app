@@ -20,6 +20,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onTap(event) {
+      const bid = this.properties.book.id
+      wx.navigateTo({
+        url: `/pages/book-detail/index?bid=${bid}`,
+        success: function (res) {
+          // success
+        },
+        fail: function () {
+          // fail
+        },
+        complete: function () {
+          // complete
+        }
+      })
+    }
   }
 })

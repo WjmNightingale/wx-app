@@ -63,3 +63,7 @@
   padding: 0 90rpx 0 90rpx;
   margin-top: 10rpx;
 }
+
+.container .sub-container .books-container v-book {
+  margin-bottom: 10rpx;
+}
