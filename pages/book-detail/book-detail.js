@@ -27,7 +27,7 @@ Page({
     })
     bookModel.getComments(bid).then((res) => {
       this.setData({
-        comments: res
+        comments: res.comments
       })
     })
     bookModel.getLikeStatus(bid).then((res) => {

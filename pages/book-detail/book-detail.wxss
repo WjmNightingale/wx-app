@@ -47,3 +47,14 @@
   font-weight: 600;
   color: #2f2f2f;
 }
+
+.container .sub-container .comment-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.container .sub-container .comment-container v-tag {
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+}
