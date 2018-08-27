@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bookDetail: null,
+    book: null,
     comments: [],
     likeStatus: false,
     likeCount: 0
@@ -22,7 +22,7 @@ Page({
     const bid = options.bid
     bookModel.getDetail(bid).then((res) => {
       this.setData({
-        bookDetail: res
+        book: res
       })
     })
     bookModel.getComments(bid).then((res) => {
