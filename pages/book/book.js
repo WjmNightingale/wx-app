@@ -1,4 +1,11 @@
 // pages/book/book.js
+
+import {
+  BookModel
+} from '../../models/book.js'
+
+const bookModel = new BookModel()
+
 Page({
 
   /**
@@ -15,27 +22,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // Promise 是一个对象 不是函数
-    // 对象可以用来保持状态，普通函数不能用来保持状态（闭包函数可以--单例模式）
-    const promise = new Promise((resolve, reject) => {
-      // pending 进行中
-      // fulfilled 已成功 resolve函数将 pending -》fulfilled
-      // rejected 已失败 reject函数将 pending -》rejected
-      wx.getSystemInfo({
-        success: (res) => {
-          resolve(res)
-        },
-        fail: (err) => {
-          reject(err)
-        }
-      })
-    })
-    promise.then((res) => {
-      // promise 状态为 fulfilled 的回调函数
+    bookModel.getHotBook().then((res) => {
       console.log(res)
-    }, (error) => {
-      // promise 状态为 rejected 的回调函数
-      console.log(error)
+    }, (err) => {
+      console.log(err)
     })
   },
 
@@ -86,5 +76,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  test() {
+    // Promise 是一个对象 不是函数
+    // 对象可以用来保持状态，普通函数不能用来保持状态（闭包函数可以--单例模式）
+    const promise = new Promise((resolve, reject) => {
+      // pending 进行中
+      // fulfilled 已成功 resolve函数将 pending -》fulfilled
+      // rejected 已失败 reject函数将 pending -》rejected
+      wx.getSystemInfo({
+        success: (res) => {
+          resolve(res)
+        },
+        fail: (err) => {
+          reject(err)
+        }
+      })
+    })
+    promise.then((res) => {
+      // promise 状态为 fulfilled 的回调函数
+      console.log(res)
+    }, (error) => {
+      // promise 状态为 rejected 的回调函数
+      console.log(error)
+    })
   }
 })

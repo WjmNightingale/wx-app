@@ -26,16 +26,8 @@ Page({
    */
   onLoad: function (options) {
     // GET  http://bl.7yue.pro/v1/classic/latest?appkey=AmYiUAfV5l88OjyM
-    // 数据更新-callBack
-    // classicModel.getLatest((res) => {
-    //   this.setData({
-    //     classic: res,
-    //     likeCount: res.fav_nums,
-    //     likeStatus: !!res.like_status
-    //   })
-    // })
-    // 数据更新-promise
-    classicModel.pGetLatest().then((res) => {
+    // 数据更新 -- callBack
+    classicModel.getLatest((res) => {
       this.setData({
         classic: res,
         likeCount: res.fav_nums,
@@ -58,20 +50,7 @@ Page({
   _updateClassic(nextOrPrevious) {
     let index = this.data.classic.index
     // 数据更新 -- callback
-
-    // classicModel.getClassic(index, nextOrPrevious, (res) => {
-    //   this._getLikeStatus(res.id, res.type)
-    //   let isFirst = classicModel.isFirst(res.index)
-    //   let isLatest = classicModel.isLatest(res.index)
-    //   this.setData({
-    //     classic: res,
-    //     first: isFirst,
-    //     latest: isLatest
-    //   })
-    // })
-
-    // 数据更新 -- promise
-    classicModel.pGetClassic(index, nextOrPrevious).then((res) => {
+    classicModel.getClassic(index, nextOrPrevious, (res) => {
       this._getLikeStatus(res.id, res.type)
       let isFirst = classicModel.isFirst(res.index)
       let isLatest = classicModel.isLatest(res.index)

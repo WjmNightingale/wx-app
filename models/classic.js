@@ -15,21 +15,6 @@ class ClassicModel extends HTTP {
     })
   }
 
-  pGetLatest() {
-    const promise = new Promise((resolve, reject) => {
-      this.request({
-        url: 'classic/latest',
-        success: res => {
-          resolve(res)
-          this._setLatestIndex(res.index)
-          wx.setStorageSync(this._getKey(res.index), res)
-        },
-        fail: err => reject(err)
-      })
-    })
-    return promise
-  }
-
   getPrevious(index, sCallback) {
     this.request({
       url: `classic/${index}/previous`,
@@ -39,33 +24,12 @@ class ClassicModel extends HTTP {
     })
   }
 
-  pGetPrevious(index) {
-    const promise = new Promise((resolve, reject) => {
-      this.request({
-        url: `classic/${index}/previous`,
-        success: res => resolve(res),
-        fail: err => reject(err)
-      })
-    })
-    return promise
-  }
-
   getNext(index, sCallback) {
     this.request({
       url: `classic/${index}/next`,
       success: (res) => {
         sCallback(res)
       }
-    })
-  }
-
-  pGetNext(index) {
-    const promise = new Promise((resolve, reject) => {
-      this.request({
-        url: `classic/${index}/next`,
-        success: res => resolve(res),
-        fail: err => reject(err)
-      })
     })
   }
 
@@ -86,27 +50,6 @@ class ClassicModel extends HTTP {
       // 取缓存值
       sCallback(classic)
     }
-  }
-
-  pGetClassic(index, nextOrPrevious) {
-    const promise = new Promise((resolve, reject) => {
-      let key = nextOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index - 1)
-      let classic = wx.getStorageSync(key)
-      if (!classic) {
-        this.request({
-          url: `classic/${index}/${nextOrPrevious}`,
-          success: (res) => {
-            wx.setStorageSync(this._getKey(res.index), res)
-            resolve(res)
-          },
-          fail: err => reject(err)
-        })
-      } else {
-        // 取缓存值
-        resolve(classic)
-      }
-    })
-    return promise
   }
 
   isFirst(index) {
