@@ -63,3 +63,38 @@
   font-size: 22rpx;
   color: #aaa;
 }
+
+/* 霸道修改 hack样式 */
+/* .container .sub-container .comment-container v-tag:nth-child(1)>view {
+  background-color: #fffbdb;
+}
+
+.container .sub-container .comment-container v-tag:nth-child()>view {
+  background-color: #eefbff;
+} */
+.ex-tag1 {
+  background-color: #fffbdb !important;
+}
+
+.ex-tag2 {
+  background-color: #eefbff !important;
+}
+
+/* 子元素选择器 后代元素选择器 */
+/* v-tag组件 自定义组件 */
+/* view text image 自定义组件 */
+/* 开源组件 UI 平衡默认样式和自定义样式 */
+/* 组件属性 slot插槽 封装很好 组件机制 需要用户通过参数自定义 */
+/* 外部样式 externalClass 传递css样式 */
+.container .sub-container>.headline {
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2f2f2f;
+}
+
+.container .sub-container>.content {
+  text-indent: 58rpx;
+  font-weight: 500;
+  color: #000;
+}

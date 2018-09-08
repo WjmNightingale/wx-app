@@ -1,5 +1,10 @@
 <!--components/tag/index.wxml-->
-<view class="container">
+<view class="container tag-class">
   <text>{{comment}}</text>
   <slot name="num"></slot>
 </view>
+
+<!-- container -- 普通样式
+tag-class -- 外部样式 -->
+
+<!-- 有时候外部样式和普通样式先后顺序不确定 -->
