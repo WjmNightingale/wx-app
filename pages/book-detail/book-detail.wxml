@@ -1,4 +1,6 @@
 <!--pages/book-detail/index.wxml-->
+<!-- 导入wxs模块 -->
+
 <view class="container">
   <view class="header">
     <image src="{{book.image}}"></image>
@@ -8,16 +10,69 @@
   <view class="sub-container">
     <text class="headline">短评</text>
     <view class="comment-container">
-      <block wx:for="{{comments}}" wx:key="content">
+      <block wx:for="{{util.limit(comments, 15)}}" wx:key="content">
         <v-tag comment="{{item.content}}" tag-class="{{index === 0 ? 'ex-tag1' : '' || index === 1 ? 'ex-tag2': ''}}">
           <text class="num" slot="num">{{'+' + item.nums}}</text>
         </v-tag>
       </block>
     </view>
-
   </view>
   <view class="sub-container">
     <text class="headline">内容简介</text>
-    <text class="content">{{book.summary}}</text>
+    <text decode="true" class="content">{{util.format(book.summary)}}</text>
+  </view>
+  <view class="sub-container">
+    <text class="headline">书本信息</text>
+    <view class="detail-container">
+      <view class="vertical description">
+        <text>出版社</text>
+        <text>出版年</text>
+        <text>页数</text>
+        <text>定价</text>
+        <text>装帧</text>
+      </view>
+      <view class="vertical">
+        <text>{{book.publisher}}</text>
+        <text>{{book.pubdate}}</text>
+        <text>{{book.pages}}</text>
+        <text>{{book.price}}</text>
+        <text>{{book.binding}}</text>
+      </view>
+    </view>
   </view>
 </view>
+<view class="post-container">
+  <view class="post-fake" bind:tap="onFakePost">
+    <text class="placeholder">输入短评</text>
+  </view>
+  <view class="like-container">
+    <v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}"></v-like>
+  </view>
+</view>
+
+<view class="posting-container">
+  <view class="post-header">
+    <text class="desc">仅可点击标签+1</text>
+    <text class="cancel">取消</text>
+  </view>
+  <view class="comment-container"></view>
+  <input class="post" placeholder="短评最多12个字" />
+</view>
+
+<wxs module="util">
+  var format = function(text){
+  if(!text){
+  return
+  }
+  var reg = getRegExp('\\\\n','g')
+  var text = text.replace(reg,'\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+  return text
+  }
+  var limit = function(array, length) {
+  return array.slice(0, length)
+  }
+  module.exports = {
+  format:format,
+  limit: limit
+  }
+</wxs>
