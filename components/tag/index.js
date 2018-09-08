@@ -1,5 +1,9 @@
 // components/tag/index.js
 Component({
+  options: {
+    // 启用多插槽
+    multipleSlots: true,
+  },
   /**
    * 组件的属性列表
    */
