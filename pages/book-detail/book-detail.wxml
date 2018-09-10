@@ -41,7 +41,7 @@
     </view>
   </view>
 </view>
-<view class="post-container">
+<view class="post-container" wx:if="{{!posting}}">
   <view class="post-fake" bind:tap="onFakePost">
     <text class="placeholder">输入短评</text>
   </view>
@@ -50,12 +50,18 @@
   </view>
 </view>
 
-<view class="posting-container">
+<view class="posting-container" wx:if="{{posting}}">
   <view class="post-header">
     <text class="desc">仅可点击标签+1</text>
     <text class="cancel">取消</text>
   </view>
-  <view class="comment-container"></view>
+  <view class="posting-comment-container">
+    <block wx:for="{{util.limit(comments, 3)}}" wx:key="content">
+      <v-tag tag-class="tag" comment="{{item.content}}">
+        <text class="num" slot="num">{{'+' + item.nums}}</text>
+      </v-tag>
+    </block>
+  </view>
   <input class="post" placeholder="短评最多12个字" />
 </view>
 
