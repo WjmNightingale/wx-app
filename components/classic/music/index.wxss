@@ -3,6 +3,7 @@
 /* 组件属性动画 小程序动画API CSS3 Canvas 游戏 */
 
 @import '../common.wxss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -31,6 +32,13 @@
   right: 300rpx;
 }
 
+.container .content {
+  display: block;
+  max-width: 550rpx;
+  font-size: 36rpx;
+  margin-top: -90rpx;
+}
+
 .rotation {
   -webkit-transform: rotate(360deg);
   animation: rotation 12s linear infinite;
@@ -43,6 +51,7 @@
   from {
     -webkit-transform: rotate(0deg);
   }
+
   to {
     -webkit-transform: rotate(360deg);
   }
