@@ -12,25 +12,25 @@
   background-color: #fff;
 }
 
-.container .header image {
+.header-image {
   width: 300rpx;
   height: 200rpx;
   box-shadow: 2px 2px 3px #e3e3e3;
 }
 
-.container .header .title {
+.header-title {
   margin-top: 20rpx;
   font-size: 38rpx;
   font-weight: 600;
   color: #2f2f2f;
 }
 
-.container .header .author {
+.header-author {
   font-size: 28rpx;
   color: #999;
 }
 
-.container .sub-container {
+.sub-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,38 +40,34 @@
   background-color: #fff;
 }
 
-.container .sub-container .headline {
+.headline {
   margin-bottom: 20rpx;
   font-size: 30rpx;
   font-weight: 600;
   color: #2f2f2f;
 }
 
-.container .sub-container .comment-container {
+/* 书本评论样式 */
+
+.comment-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.container .sub-container .comment-container v-tag {
+.comment-container v-tag {
   margin-right: 15rpx;
   margin-bottom: 10rpx;
 }
 
-.num {
+.comment-container v-tag>.num {
   margin-left: 5px;
   font-size: 22rpx;
   color: #aaa;
 }
 
-/* 霸道修改 hack样式 */
-/* .container .sub-container .comment-container v-tag:nth-child(1)>view {
-  background-color: #fffbdb;
-}
+/* 外部自定义样式传递给组件 */
 
-.container .sub-container .comment-container v-tag:nth-child()>view {
-  background-color: #eefbff;
-} */
 .ex-tag1 {
   background-color: #fffbdb !important;
 }
@@ -80,26 +76,31 @@
   background-color: #eefbff !important;
 }
 
-/* 子元素选择器 后代元素选择器 */
-/* v-tag组件 自定义组件 */
-/* view text image 自定义组件 */
-/* 开源组件 UI 平衡默认样式和自定义样式 */
-/* 组件属性 slot插槽 封装很好 组件机制 需要用户通过参数自定义 */
-/* 外部样式 externalClass 传递css样式 */
-.container .sub-container>.headline {
+/* 霸道修改 hack样式 */
+
+/* .comment-container v-tag:nth-child(1)>view {
+  background-color: #fffbdb;
+} */
+
+/* .comment-container v-tag:nth-child()>view {
+  background-color: #eefbff;
+} */
+
+/* 书籍详情样式 */
+.headline {
   margin-bottom: 20rpx;
   font-size: 30rpx;
   font-weight: 600;
   color: #2f2f2f;
 }
 
-.container .sub-container>.content {
+.book-summary {
   text-indent: 58rpx;
   font-weight: 500;
   color: #000;
 }
 
-.detail-container {
+.book-detail-container {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -122,16 +123,15 @@
 .post-container {
   position: fixed;
   bottom: 0;
+  padding: 0 30rpx;
   width: 690rpx;
   height: 100rpx;
-  padding: 0 30rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 1px -1px 1px #e3e3e3;
   background-color: #fff;
-  z-index: 100;
 }
 
 .post-fake {
@@ -158,26 +158,6 @@
   margin-top: 10rpx;
 }
 
-.post-header {
-  width: 100%;
-  height: 100rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #f5f5f5;
-  border-top: 1px solid #f5f5f5;
-}
-
-.post-header>text {
-  padding: 25rpx;
-}
-
-.post-header>text:first-child {
-  font-size: 28rpx;
-  color: #bbb;
-}
-
 .posting-container {
   position: fixed;
   bottom: 0;
@@ -189,18 +169,37 @@
   z-index: 999;
 }
 
+.posting-header {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
+}
+
+.posting-header>text {
+  padding: 25rpx;
+}
+
+.desc {
+  color: #bbb;
+  font-size: 28rpx;
+}
+
+.cancel {
+  color: #666;
+}
+
+
 .posting-comment-container {
   width: 690rpx;
   padding: 40rpx 30rpx 0 30rpx;
 }
 
-.tag {
-  margin-right: 15rpx;
-  margin-bottom: 10rpx;
-  border-radius: 15px !important;
-}
-
-.post {
+.comment-input {
   width: 690rpx;
   height: 56rpx;
   margin: 30rpx auto;
@@ -208,3 +207,10 @@
   border-radius: 15px;
   background-color: #f5f5f5;
 }
+
+/* 子元素选择器 后代元素选择器 */
+/* v-tag组件 自定义组件 */
+/* view text image 自定义组件 */
+/* 开源组件 UI 平衡默认样式和自定义样式 */
+/* 组件属性 slot插槽 封装很好 组件机制 需要用户通过参数自定义 */
+/* 外部样式 externalClass 传递css样式 */
