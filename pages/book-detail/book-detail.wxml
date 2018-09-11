@@ -11,7 +11,7 @@
     <text class="headline">短评</text>
     <view class="comment-container">
       <block wx:for="{{util.limit(comments, 15)}}" wx:key="content">
-        <v-tag comment="{{item.content}}" tag-class="{{index === 0 ? 'ex-tag1' : '' || index === 1 ? 'ex-tag2': ''}}">
+        <v-tag comment="{{item.content}}" tag-class="{{util.highlight(index)}}">
           <text class="num" slot="num">{{'+' + item.nums}}</text>
         </v-tag>
       </block>
@@ -53,17 +53,19 @@
 <view class="posting-container" wx:if="{{posting}}">
   <view class="post-header">
     <text class="desc">仅可点击标签+1</text>
-    <text class="cancel">取消</text>
+    <text bind:tap="onCancel" class="cancel">取消</text>
   </view>
   <view class="posting-comment-container">
     <block wx:for="{{util.limit(comments, 3)}}" wx:key="content">
-      <v-tag tag-class="tag" comment="{{item.content}}">
+      <v-tag tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
         <text class="num" slot="num">{{'+' + item.nums}}</text>
       </v-tag>
     </block>
   </view>
   <input class="post" placeholder="短评最多12个字" />
 </view>
+
+<v-mask wx:if="{{posting}}"></v-mask>
 
 <wxs module="util">
   var format = function(text){
@@ -77,8 +79,18 @@
   var limit = function(array, length) {
   return array.slice(0, length)
   }
+  var highlight = function(index) {
+  if (index === 0) {
+  return 'ex-tag1'
+  }
+  if (index === 1) {
+  return 'ex-tag2'
+  }
+  return ''
+  }
   module.exports = {
   format:format,
-  limit: limit
+  limit: limit,
+  highlight: highlight
   }
 </wxs>

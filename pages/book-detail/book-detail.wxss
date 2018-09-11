@@ -131,6 +131,7 @@
   align-items: center;
   box-shadow: 1px -1px 1px #e3e3e3;
   background-color: #fff;
+  z-index: 100;
 }
 
 .post-fake {
@@ -175,6 +176,17 @@
 .post-header>text:first-child {
   font-size: 28rpx;
   color: #bbb;
+}
+
+.posting-container {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+  z-index: 999;
 }
 
 .posting-comment-container {

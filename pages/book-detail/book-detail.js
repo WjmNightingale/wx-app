@@ -40,11 +40,15 @@ Page({
         likeStatus: res.like_status
       })
     })
-    console.log(this.data)
   },
   onFakePost(e) {
     this.setData({
       posting: true
+    })
+  },
+  onCancel(e) {
+    this.setData({
+      posting: false
     })
   },
   onLike(e) {
