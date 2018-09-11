@@ -10,7 +10,7 @@
   <view class="sub-container">
     <text class="headline">短评</text>
     <view class="comment-container">
-      <block wx:for="{{util.limit(comments, 15)}}" wx:key="content">
+      <block wx:for="{{util.limit(comments, 15)}}" wx:key="{{content}}">
         <v-tag tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
           <text class="num" slot="num">{{'+' + item.nums}}</text>
         </v-tag>
@@ -57,12 +57,12 @@
   </view>
   <view class="posting-comment-container">
     <block wx:for="{{util.limit(comments, 3)}}" wx:key="content">
-      <v-tag tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
+      <v-tag bind:tapping="onPost" tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
         <text class="num" slot="num">{{'+' + item.nums}}</text>
       </v-tag>
     </block>
   </view>
-  <input class="comment-input" placeholder="短评最多12个字" />
+  <input class="comment-input" bind:confirm="onPost" focus="{{posting}}" confirm-type="发送" placeholder='短评最多12个字'></input>
 </view>
 
 <v-mask wx:if="{{posting}}"></v-mask>

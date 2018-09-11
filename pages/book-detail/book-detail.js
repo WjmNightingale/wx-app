@@ -55,6 +55,33 @@ Page({
     const like_or_cancel = e.detail.behavior
     likeModel.like(like_or_cancel, this.data.book.id, 400)
   },
+  onPost(e) {
+    // 点击tag组件提交
+    const bid = this.data.book.id
+    console.log(e.detail)
+    const comment = e.detail.comment || e.detail.value
+    if (comment.length > 12) {
+      wx.showToast({
+        title: '短评最多12字',
+        icon: 'none'
+      })
+      return
+    }
+    bookModel.postComment(bid, comment).then(res => {
+      wx.showToast({
+        title: '评论+1',
+        icon: 'none'
+      })
+      this.data.comments.unshift({
+        content: comment,
+        nums: 1
+      })
+      this.setData({
+        comments: this.data.comments,
+        posting: false
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
