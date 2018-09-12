@@ -1,0 +1,11 @@
+<!--components/search/index.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="search-container">
+      <image class="search-img" src="{{searchIcon}}"></image>
+      <input class="bar" auto-focus="true" placeholder-class="in-bar" placeholder="书籍名" />
+      <image class="cancel-img" src="{{cancelIcon}}"></image>
+    </view>
+    <view class="cancel" bind:tap="onCancel">取消</view>
+  </view>
+</view>

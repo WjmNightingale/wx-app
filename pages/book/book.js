@@ -16,7 +16,8 @@ Page({
     // 1、陷入回调低于 2、剥夺了函数的return能力
     // Promise 代码风格 多个异步等待合并 不需要层层传递callback
     // async await ES2017 小程序暂不支持
-    books: null
+    books: null,
+    isSearch: false
   },
 
   /**
@@ -30,6 +31,16 @@ Page({
       })
     }, (err) => {
       console.log(err)
+    })
+  },
+  showSearch(e) {
+    this.setData({
+      isSearch: true
+    })
+  },
+  hideSearch(e) {
+    this.setData({
+      isSearch: false
     })
   },
 

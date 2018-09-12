@@ -1,17 +1,20 @@
 <!--pages/book/book.wxml-->
-<view class="container">
-  <view class="header">
-    <view class="box">
-      <image src="/images/icon/search.png"></image>
-      <text>搜索书籍</text>
+<view>
+  <view class="container" wx:if="{{!isSearch}}">
+    <view class="header">
+      <view class="box" bind:tap="showSearch">
+        <image src="/images/icon/search.png"></image>
+        <text>搜索书籍</text>
+      </view>
+    </view>
+    <view class="sub-container">
+      <image class="head-img" src="/images/book/quality.png"></image>
+      <view class="books-container">
+        <block wx:for="{{books}}" wx:key="id">
+          <v-book book="{{item}}" />
+        </block>
+      </view>
     </view>
   </view>
-  <view class="sub-container">
-    <image class="head-img" src="/images/book/quality.png"></image>
-    <view class="books-container">
-      <block wx:for="{{books}}" wx:key="id">
-        <v-book book="{{item}}" />
-      </block>
-    </view>
-  </view>
+  <v-search bind:cancel="hideSearch"></v-search>
 </view>
