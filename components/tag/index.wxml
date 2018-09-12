@@ -1,6 +1,6 @@
 <!--components/tag/index.wxml-->
 <view class="container tag-class">
-  <text bind:tap="onTap">{{comment}}</text>
+  <text bind:tap="onTap">{{text}}</text>
   <slot name="num"></slot>
 </view>
 

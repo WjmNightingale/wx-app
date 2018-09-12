@@ -12,7 +12,7 @@
     <text class="shadow" wx:else>还没有评论</text>
     <view class="comment-container">
       <block wx:for="{{util.limit(comments, 15)}}" wx:key="{{content}}">
-        <v-tag tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
+        <v-tag tag-class="{{util.highlight(index)}}" text="{{item.content}}">
           <text class="num" slot="num">{{'+' + item.nums}}</text>
         </v-tag>
       </block>
@@ -59,7 +59,7 @@
   </view>
   <view class="posting-comment-container">
     <block wx:for="{{util.limit(comments, 3)}}" wx:key="content">
-      <v-tag bind:tapping="onPost" tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
+      <v-tag bind:tapping="onPost" tag-class="{{util.highlight(index)}}" text="{{item.content}}">
         <text class="num" slot="num">{{'+' + item.nums}}</text>
       </v-tag>
     </block>

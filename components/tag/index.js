@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    comment: {
+    text: {
       type: String
     }
   },
@@ -28,7 +28,7 @@ Component({
   methods: {
     onTap(e) {
       this.triggerEvent('tapping', {
-        comment: this.properties.comment
+        comment: this.properties.text
       })
     }
   }
