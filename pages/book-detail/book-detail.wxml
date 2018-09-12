@@ -8,7 +8,8 @@
     <text class="header-author">{{book.author}}</text>
   </view>
   <view class="sub-container">
-    <text class="headline">短评</text>
+    <text class="headline" wx:if="{{comments.length}}">短评</text>
+    <text class="shadow" wx:else>还没有评论</text>
     <view class="comment-container">
       <block wx:for="{{util.limit(comments, 15)}}" wx:key="{{content}}">
         <v-tag tag-class="{{util.highlight(index)}}" comment="{{item.content}}">
@@ -52,7 +53,8 @@
 
 <view class="posting-container" wx:if="{{posting}}">
   <view class="posting-header">
-    <text class="desc">仅可点击标签+1</text>
+    <text class="desc" wx:if="{{comments}}">仅可点击标签+1</text>
+    <text class="desc" wx:else>暂无短评</text>
     <text class="cancel" bind:tap="onCancel">取消</text>
   </view>
   <view class="posting-comment-container">

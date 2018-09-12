@@ -24,22 +24,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading()
     const bid = options.bid
-    bookModel.getDetail(bid).then((res) => {
+    // bookModel.getDetail(bid).then((res) => {
+    //   this.setData({
+    //     book: res
+    //   })
+    // })
+    // bookModel.getComments(bid).then((res) => {
+    //   this.setData({
+    //     comments: res.comments
+    //   })
+    // })
+    // bookModel.getLikeStatus(bid).then((res) => {
+    //   this.setData({
+    //     likeStatus: res.like_status
+    //   })
+    // })
+
+
+    // Promise.all() 可以将Promise多个实例合并成一个
+
+    const detail = bookModel.getDetail(bid)
+    const comments = bookModel.getComments(bid)
+    const likeStatus = bookModel.getLikeStatus(bid)
+
+    // detail comments likeStatus 是三个Promise实例 so 
+    // Promise.all 返回一个新的Promise实例 then 只有在先前的 Promise 实例都完成后才能触发回调函数
+    Promise.all([detail, comments, likeStatus]).then(res => {
       this.setData({
-        book: res
+        book: res[0],
+        comments: res[1].comments,
+        likeStatus: res[2].like_status,
+        likeCount: res[2].fav_nums
       })
+      wx.hideLoading()
     })
-    bookModel.getComments(bid).then((res) => {
-      this.setData({
-        comments: res.comments
-      })
-    })
-    bookModel.getLikeStatus(bid).then((res) => {
-      this.setData({
-        likeStatus: res.like_status
-      })
-    })
+
+    // Promise.race() 任何一个子Promise完成后就触发回调
+    // race ==》竞争
   },
   onFakePost(e) {
     this.setData({
@@ -54,6 +77,12 @@ Page({
   onLike(e) {
     const like_or_cancel = e.detail.behavior
     likeModel.like(like_or_cancel, this.data.book.id, 400)
+    const like_status = !this.data.likeStatus
+    const like_count = like_or_cancel === 'like' ? this.data.likeCount - 0 + 1 : this.data.likeCount - 0 - 1
+    this.setData({
+      likeStatus: like_status,
+      likeCount: like_count
+    })
   },
   onPost(e) {
     // 点击tag组件提交

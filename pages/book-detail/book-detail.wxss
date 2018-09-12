@@ -47,6 +47,10 @@
   color: #2f2f2f;
 }
 
+.shadow {
+  color: #999;
+}
+
 /* 书本评论样式 */
 
 .comment-container {
