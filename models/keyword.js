@@ -27,6 +27,15 @@ class KeywordModel extends HTTP_P {
       wx.setStorageSync(this.key, words)
     }
   }
+  searchByQuery(q, start) {
+    return this.request({
+      url: 'book/search?summary=1',
+      data: {
+        q,
+        start
+      }
+    })
+  }
 }
 
 export {
