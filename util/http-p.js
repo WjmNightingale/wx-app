@@ -1,3 +1,4 @@
+// 基于 Promise 的 HTTP 类 
 import {
     config
 } from '../config.js'

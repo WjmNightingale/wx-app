@@ -17,7 +17,8 @@ Component({
   data: {
     searchIcon: 'img/search.png',
     cancelIcon: 'img/cancel.png',
-    historyWords: []
+    historyWords: [],
+    hotWords: []
   },
 
   /**
@@ -33,7 +34,7 @@ Component({
         return
       }
       keywordModel.addToHistory(keyword)
-      // console.log(keywordModel.getHistory())
+      console.log(keywordModel.getHistory())
     },
     onClear(e) {
       // clear
@@ -44,6 +45,12 @@ Component({
     this.setData({
       historyWords
     })
-    console.log('缓存', this.data.historyWords)
+    keywordModel.getHot().then(res => {
+      console.log(res)
+      this.setData({
+        hotWords: res.hot
+      })
+    })
+    // console.log('缓存', this.data.historyWords)
   }
 })

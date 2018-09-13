@@ -1,4 +1,7 @@
-class KeywordModel {
+import {
+  HTTP as HTTP_P
+} from '../util/http-p.js'
+class KeywordModel extends HTTP_P {
   key = 'q'
   maxLength = 10
   getHistory() {
@@ -8,7 +11,11 @@ class KeywordModel {
     }
     return words
   }
-  getHot() {}
+  getHot() {
+    return this.request({
+      url: '/book/hot_keyword'
+    })
+  }
   addToHistory(keyword) {
     let words = this.getHistory()
     const has = words.indexOf(keyword) > -1 ? true : false
