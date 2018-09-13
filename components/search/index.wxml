@@ -3,12 +3,12 @@
   <view class="header">
     <view class="search-container">
       <image class="search-img" src="{{searchIcon}}"></image>
-      <input bind:confirm="onConfirm" class="bar" auto-focus="true" placeholder-class="in-bar" placeholder="书籍名" />
+      <input bind:confirm="onSearch" class="bar" auto-focus="true" placeholder-class="in-bar" placeholder="书籍名" value="{{query}}" />
       <image bind:tap="onClear" class="cancel-img" src="{{cancelIcon}}"></image>
     </view>
     <view class="cancel" bind:tap="onCancel">取消</view>
   </view>
-  <view class="tag-container">
+  <view class="tag-container" wx:if="{{!searchIsFinish}}">
     <view class="history">
       <view class="title">
         <view class="chunk"></view>
@@ -16,7 +16,7 @@
       </view>
       <view class="tags">
         <block wx:for="{{historyWords}}" wx:key="{{index}}">
-          <v-tag text="{{item}}">
+          <v-tag bind:tapping="onSearch" text="{{item}}">
           </v-tag>
         </block>
       </view>
@@ -28,10 +28,15 @@
       </view>
       <view class="tags">
         <block wx:for="{{hotWords}}" wx:key="{{index}}">
-          <v-tag text="{{item}}">
+          <v-tag bind:tapping="onSearch" text="{{item}}">
           </v-tag>
         </block>
       </view>
     </view>
+  </view>
+  <view class="books-container" wx:if="{{searchIsFinish}}">
+    <block wx:for="{{books}}" wx:key="{{item.id}}">
+      <v-book book="{{item}}"></v-book>
+    </block>
   </view>
 </view>

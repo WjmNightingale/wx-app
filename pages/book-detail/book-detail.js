@@ -88,7 +88,7 @@ Page({
     // 点击tag组件提交
     const bid = this.data.book.id
     console.log(e.detail)
-    const comment = e.detail.comment || e.detail.value
+    const comment = e.detail.text || e.detail.value
     if (comment.length > 12) {
       wx.showToast({
         title: '短评最多12字',

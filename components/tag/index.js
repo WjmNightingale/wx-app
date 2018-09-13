@@ -28,7 +28,7 @@ Component({
   methods: {
     onTap(e) {
       this.triggerEvent('tapping', {
-        comment: this.properties.text
+        text: this.properties.text
       })
     }
   }

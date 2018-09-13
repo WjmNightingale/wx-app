@@ -83,7 +83,9 @@
   background-color: #000;
 }
 
-.desc {}
+.desc {
+  /* 描述 */
+}
 
 .tags {
   display: flex;
@@ -92,4 +94,18 @@
   width: 630rpx;
   margin-top: 24rpx;
   padding-left: 15px;
+}
+
+.books-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 570rpx;
+  margin-top: 100rpx;
+  padding: 0 90rpx;
+}
+
+.books-container v-book {
+  margin-bottom: 25rpx;
 }

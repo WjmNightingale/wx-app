@@ -2,7 +2,12 @@
 import {
   KeywordModel
 } from '../../models/keyword.js'
+
+import {
+  BookModel
+} from '../../models/book.js'
 const keywordModel = new KeywordModel()
+const bookModel = new BookModel()
 Component({
   /**
    * 组件的属性列表
@@ -17,8 +22,11 @@ Component({
   data: {
     searchIcon: 'img/search.png',
     cancelIcon: 'img/cancel.png',
+    query: '',
+    searchIsFinish: false,
     historyWords: [],
-    hotWords: []
+    hotWords: [],
+    books: []
   },
 
   /**
@@ -28,16 +36,30 @@ Component({
     onCancel(e) {
       this.triggerEvent('cancel')
     },
-    onConfirm(e) {
-      const keyword = e.detail.value.trim()
-      if (!keyword) {
+    onSearch(e) {
+      const query = e.detail.value || e.detail.text
+      if (!query.trim()) {
         return
       }
-      keywordModel.addToHistory(keyword)
-      console.log(keywordModel.getHistory())
+      this.setData({
+        query: query,
+        searchIsFinish: true
+      })
+      bookModel.searchBookByQuery(query, 0).then(res => {
+        if (res.books) {
+          this.setData({
+            books: res.books
+          })
+          keywordModel.addToHistory(query)
+        }
+      })
     },
     onClear(e) {
-      // clear
+      // 清空搜索框关键词以及搜索结果
+      this.setData({
+        query: '',
+        searchIsFinish: false
+      })
     }
   },
   attached() {
@@ -46,11 +68,9 @@ Component({
       historyWords
     })
     keywordModel.getHot().then(res => {
-      console.log(res)
       this.setData({
         hotWords: res.hot
       })
     })
-    // console.log('缓存', this.data.historyWords)
   }
 })

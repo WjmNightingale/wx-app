@@ -38,6 +38,15 @@ class BookModel extends HTTP_P {
       }
     })
   }
+  searchBookByQuery(q, start) {
+    return this.request({
+      url: 'book/search?summary=1',
+      data: {
+        q,
+        start
+      }
+    })
+  }
 }
 
 export {
