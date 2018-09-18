@@ -2,7 +2,7 @@
 const paginationBehavior = Behavior({
   data: {
     books: [],
-    total: undefined
+    total: null
   },
   methods: {
     setMoreData(books) {
@@ -22,6 +22,13 @@ const paginationBehavior = Behavior({
       // 服务器返回一个 total 标识，判断 this.books.length > total 缺陷--服务器没提供这个标识
       // 判断setMoreData 中的 books 是否为空 缺陷--服务器异常返回空数组
       return this.data.books.length < total ? true : false
+    },
+    initData() {
+      // 重置数据
+      this.setData({
+        books: [],
+        total: null
+      })
     }
   }
 })

@@ -8,7 +8,7 @@
     </view>
     <view class="cancel" bind:tap="onCancel">取消</view>
   </view>
-  <view class="tag-container" wx:if="{{!searchIsFinish}}">
+  <view class="tag-container" wx:if="{{!showSearch}}">
     <view class="history">
       <view class="title">
         <view class="chunk"></view>
@@ -34,7 +34,7 @@
       </view>
     </view>
   </view>
-  <view class="books-container" wx:if="{{searchIsFinish}}">
+  <view class="books-container" wx:if="{{showSearch}}">
     <block wx:for="{{books}}" wx:key="{{item.id}}">
       <v-book book="{{item}}"></v-book>
     </block>

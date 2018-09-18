@@ -37,7 +37,7 @@ Component({
     searchIcon: 'img/search.png',
     cancelIcon: 'img/cancel.png',
     query: '',
-    searchIsFinish: false,
+    showSearch: false,
     historyWords: [],
     hotWords: [],
     loading: false
@@ -51,14 +51,13 @@ Component({
       this.triggerEvent('cancel')
     },
     onSearch(e) {
+      // 清空上一次的搜索数据
+      this.initData()
       const query = e.detail.value || e.detail.text
       if (!query.trim()) {
         return
       }
-      this.setData({
-        query: query,
-        searchIsFinish: true
-      })
+      this._showResult(query)
       bookModel.searchBookByQuery(query, this.getCurrentStart()).then(res => {
         if (res.books) {
           this.setMoreData(res.books)
@@ -69,40 +68,55 @@ Component({
     },
     onClear(e) {
       // 清空搜索框关键词以及搜索结果
-      this.setData({
-        query: '',
-        searchIsFinish: false
-      })
+      this._closeResult()
     },
     loadMore() {
-      // 加载更多数据
-      console.log('加载更多')
+      // 触底加载更多数据
       if (!this.data.query) {
         return
       }
-      if (this.data.loading) {
+      if (this._isLocked()) {
         // 锁住状态
         return
       }
-      console.log('搜索词存在还为发HTTP请求')
-      console.log(this.data.total)
       // 使用锁的机制，不允许用户同时发起多个请求
-      // 加载数据时，使用锁机制避免`searchBookByQuery在已有的请求未完成时，再次调用
-      console.log(this.hasMore(this.total))
+      // 加载数据时，使用锁机制避免`searchBookByQuery
+      // 在已有的请求未完成时再次调用
       if (this.hasMore(this.data.total)) {
-        console.log('存在更多数据，开始请求')
         // 加锁
-        this.data.loading = true
-        bookModel.searchBookByQuery(this.data.query, this.getCurrentStart()).then(res => {
-          // this.data.books 已有的数据
-          // res.books 新请求的数据
-          // 用行为方法来更新数据
+        this._locked()
+        bookModel.searchBookByQuery(this.data.query, this.getCurrentStart()).then((res) => {
+          // 用pagination行为方法来更新数据
           this.setMoreData(res.books)
           // 解锁
-          this.data.loading = false
-          console.log('请求完毕')
+          this._unLocked()
+        }, (error) => {
+          // 如果请求出现异常，也要执行解锁操作，避免影响下次请求
+          this._unLocked()
+          console.log(error)
         })
       }
+    },
+    _isLocked() {
+      return this.data.loading ? true : false
+    },
+    _locked() {
+      this.data.loading = true
+    },
+    _unLocked() {
+      this.data.loading = false
+    },
+    _showResult(query) {
+      this.setData({
+        query: query,
+        showSearch: true
+      })
+    },
+    _closeResult() {
+      this.setData({
+        query: '',
+        showSearch: false
+      })
     }
   },
   attached() {
