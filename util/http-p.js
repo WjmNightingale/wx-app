@@ -37,12 +37,12 @@ class HTTP {
                     // 请求失败
                     let error_code = res.data.error_code
                     this._show_error(error_code)
-                    reject()
+                    reject(new Error(error_code))
                 }
             },
-            fail: () => {
+            fail: (error) => {
                 this._show_error()
-                reject()
+                reject(error)
             },
             complete: () => {
                 // 无论请求成功失败与否都会执行回调函数

@@ -14,6 +14,9 @@ Component({
   properties: {
     audioSrc: {
       type: String
+    },
+    audioTitle: {
+      type: String
     }
   },
 
@@ -40,6 +43,7 @@ Component({
         })
       } else {
         mMgr.src = this.properties.audioSrc
+        mMgr.title = this.properties.audioTitle
         this.setData({
           isPlay: true
         })
