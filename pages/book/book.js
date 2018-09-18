@@ -17,7 +17,8 @@ Page({
     // Promise 代码风格 多个异步等待合并 不需要层层传递callback
     // async await ES2017 小程序暂不支持
     books: null,
-    isSearch: false
+    isSearch: false,
+    more: ''
   },
 
   /**
@@ -83,7 +84,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      more: (new Date()).getTime()
+    })
   },
 
   /**
