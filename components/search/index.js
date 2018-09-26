@@ -40,7 +40,8 @@ Component({
     showSearch: false,
     historyWords: [],
     hotWords: [],
-    loading: false
+    loading: false,
+    loadingCenter: false
   },
 
   /**
@@ -58,7 +59,9 @@ Component({
         return
       }
       this._showResult(query)
+      this._showLoadingCenter()
       bookModel.searchBookByQuery(query, this.getCurrentStart()).then(res => {
+        this._hideLoadingCenter()
         if (res.books) {
           this.setMoreData(res.books)
           this.setTotal(res.total)
@@ -101,10 +104,14 @@ Component({
       return this.data.loading ? true : false
     },
     _locked() {
-      this.data.loading = true
+      this.setData({
+        loading: true
+      })
     },
     _unLocked() {
-      this.data.loading = false
+      this.setData({
+        loading: false
+      })
     },
     _showResult(query) {
       this.setData({
@@ -116,6 +123,16 @@ Component({
       this.setData({
         query: '',
         showSearch: false
+      })
+    },
+    _showLoadingCenter() {
+      this.setData({
+        loadingCenter: true
+      })
+    },
+    _hideLoadingCenter() {
+      this.setData({
+        loadingCenter: false
       })
     }
   },

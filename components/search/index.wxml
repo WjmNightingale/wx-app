@@ -39,4 +39,6 @@
       <v-book book="{{item}}"></v-book>
     </block>
   </view>
+  <v-loading class="loading-center" wx:if="{{loadingCenter}}"></v-loading>
+  <v-loading class="loading" wx:if="{{loading}}"></v-loading>
 </view>
