@@ -36,9 +36,10 @@
   </view>
   <view class="books-container" wx:if="{{showSearch}}">
     <block wx:for="{{books}}" wx:key="{{item.id}}">
-      <v-book book="{{item}}"></v-book>
+      <v-book book="{{item}}" showFavNum="{{isShowLike}}"></v-book>
     </block>
   </view>
   <v-loading class="loading-center" wx:if="{{loadingCenter}}"></v-loading>
   <v-loading class="loading" wx:if="{{loading}}"></v-loading>
+  <text class="empty-tip" wx:if="{{noneResult}}">没有相关书籍</text>
 </view>

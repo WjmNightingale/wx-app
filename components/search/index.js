@@ -41,7 +41,8 @@ Component({
     historyWords: [],
     hotWords: [],
     loading: false,
-    loadingCenter: false
+    loadingCenter: false,
+    isShowLike: false
   },
 
   /**
@@ -49,7 +50,8 @@ Component({
    */
   methods: {
     onCancel(e) {
-      this.triggerEvent('cancel')
+      this.initData()
+      this.triggerEvent('cancel', {}, {})
     },
     onSearch(e) {
       // 清空上一次的搜索数据
@@ -78,7 +80,7 @@ Component({
       if (!this.data.query) {
         return
       }
-      if (this._isLocked()) {
+      if (this.isLocked()) {
         // 锁住状态
         return
       }
@@ -87,32 +89,32 @@ Component({
       // 在已有的请求未完成时再次调用
       if (this.hasMore(this.data.total)) {
         // 加锁
-        this._locked()
+        this.locked()
         bookModel.searchBookByQuery(this.data.query, this.getCurrentStart()).then((res) => {
           // 用pagination行为方法来更新数据
           this.setMoreData(res.books)
           // 解锁
-          this._unLocked()
+          this.unLocked()
         }, (error) => {
           // 如果请求出现异常，也要执行解锁操作，避免影响下次请求
-          this._unLocked()
+          this.unLocked()
           console.log(error)
         })
       }
     },
-    _isLocked() {
-      return this.data.loading ? true : false
-    },
-    _locked() {
-      this.setData({
-        loading: true
-      })
-    },
-    _unLocked() {
-      this.setData({
-        loading: false
-      })
-    },
+    // _isLocked() {
+    //   return this.data.loading ? true : false
+    // },
+    // _locked() {
+    //   this.setData({
+    //     loading: true
+    //   })
+    // },
+    // _unLocked() {
+    //   this.setData({
+    //     loading: false
+    //   })
+    // },
     _showResult(query) {
       this.setData({
         query: query,
@@ -120,6 +122,7 @@ Component({
       })
     },
     _closeResult() {
+      this.initData()
       this.setData({
         query: '',
         showSearch: false

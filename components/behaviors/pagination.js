@@ -2,7 +2,9 @@
 const paginationBehavior = Behavior({
   data: {
     books: [],
-    total: null
+    total: null,
+    loading: false,
+    noneResult: false,
   },
   methods: {
     setMoreData(books) {
@@ -17,6 +19,11 @@ const paginationBehavior = Behavior({
     },
     setTotal(total) {
       this.data.total = total
+      if (this.data.total === 0) {
+        this.setData({
+          noneResult: true
+        })
+      }
     },
     hasMore(total) {
       // 服务器返回一个 total 标识，判断 this.books.length > total 缺陷--服务器没提供这个标识
@@ -27,7 +34,25 @@ const paginationBehavior = Behavior({
       // 重置数据
       this.setData({
         books: [],
-        total: null
+        total: null,
+        loading: false,
+        noneResult: false
+      })
+    },
+    isLocked() {
+      // 判断锁的状态
+      return this.data.loading ? true : false
+    },
+    locked() {
+      // 加锁
+      this.setData({
+        loading: true
+      })
+    },
+    unLocked() {
+      // 解锁
+      this.setData({
+        loading: false
       })
     }
   }

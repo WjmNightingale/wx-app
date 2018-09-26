@@ -6,6 +6,10 @@ Component({
   properties: {
     book: {
       type: Object
+    },
+    showFavNum: {
+      type: Boolean,
+      value: true
     }
   },
 
