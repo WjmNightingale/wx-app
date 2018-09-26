@@ -57,7 +57,7 @@ Component({
       // 清空上一次的搜索数据
       this.initData()
       const query = e.detail.value || e.detail.text
-      if (!query.trim()) {
+      if (!query || !query.trim()) {
         return
       }
       this._showResult(query)

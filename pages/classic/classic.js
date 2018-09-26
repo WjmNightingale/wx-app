@@ -18,7 +18,8 @@ Page({
     first: false,
     latest: true,
     likeCount: 0,
-    likeStatus: false
+    likeStatus: false,
+    shareImg: "../../images/icon/share.png"
   },
 
   /**

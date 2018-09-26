@@ -1,7 +1,14 @@
 <view class="container">
   <view class="header">
-    <v-date class="date" index="{{classic.index}}" />
-    <v-like class="like" like="{{likeStatus}}" count="{{likeCount}}" bind:like="onLike" />
+    <view class="header-l">
+      <v-date class="date" index="{{classic.index}}" />
+    </view>
+    <view class="header-r">
+      <v-like class="like" like="{{likeStatus}}" count="{{likeCount}}" bind:like="onLike" />
+      <v-button class="share-btn" open-type="share">
+        <image slot="img" class="share" src="{{shareImg}}"></image>
+      </v-button>
+    </view>
   </view>
   <v-movie isHidden="{{classic.type !== 100}}" img="{{classic.image}}" content="{{classic.content}}" />
   <v-music wx:if="{{classic.type === 200}}" img="{{classic.image}}" content="{{classic.content}}" audioSrc="{{classic.url}}"

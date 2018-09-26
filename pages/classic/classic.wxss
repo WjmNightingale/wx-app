@@ -19,13 +19,30 @@
   border-bottom: 1px solid #f5f5f5;
 }
 
-.header .date {
+.date {
   margin-left: 20rpx;
   margin-top: 4rpx;
 }
 
-.header .like {
-  margin-top: 6rpx;
+.header-r {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 24rpx;
+}
+
+.like {
+  margin-right: 20rpx;
+}
+
+.share-btn {
+  margin-left: 20rpx;
+}
+
+.share {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .nav {
