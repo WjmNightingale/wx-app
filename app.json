@@ -2,8 +2,8 @@
   "pages": [
     "pages/classic/classic",
     "pages/book/book",
-    "pages/about/about",
-    "pages/book-detail/book-detail"
+    "pages/book-detail/book-detail",
+    "pages/my/my"
   ],
   "window": {
     "navigationStyle": "default",
@@ -31,7 +31,7 @@
         "text": "喜欢",
         "iconPath": "/images/tab/my.png",
         "selectedIconPath": "/images/tab/my@highlight.png",
-        "pagePath": "pages/about/about"
+        "pagePath": "pages/my/my"
       }
     ]
   }

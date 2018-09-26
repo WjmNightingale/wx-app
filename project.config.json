@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -43,6 +43,11 @@
 					"name": "书籍详情",
 					"pathName": "pages/book-detail/book-detail",
 					"query": "bid=65"
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/my/my"
 				}
 			]
 		}
