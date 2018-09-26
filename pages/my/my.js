@@ -6,21 +6,72 @@ Page({
    */
   data: {
     bgImg: "../../images/my/my@bg.png",
-    aboutImg: "../../images/my/about.png"
+    aboutImg: "../../images/my/about.png",
+    myImg: "../../images/my/my.png",
+    authorized: false,
+    userInfo: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.userAuthorized()
+    // 原来获取用户信息的API
+    // wx.getUserInfo({
+    //   success: function (res) {
+    //     console.log(res)
+    //   },
+    //   fail: function () {
+    //     // fail
+    //   },
+    //   complete: function () {
+    //     // complete
+    //   }
+    // })
   },
-  getUserInfo(event) {
+  userAuthorized() {
+    wx.getSetting({
+      success: (data) => {
+        if (data.authSetting['scope.userInfo']) {
+          // 用户授权了，那么wx.getUserInfo就能获取用户信息
+          console.log('用户授权了')
+          wx.getUserInfo({
+            success: (res) => {
+              console.log('用户授权了---')
+              console.log(res)
+              const userInfo = res.userInfo
+              this.setData({
+                userInfo,
+                authorized: true
+              })
+            }
+          })
+        } else {
+          console.log('用户未授权')
+          this.setData({
+            authorized: false
+          })
+        }
+      }
+    })
+  },
+  onGetUserInfo(event) {
     // 弹窗
     // 是否授权
     // API
     // button 组件 UI 让用户主动点击button
-    console.log(event.detail)
+    // wx.getUserInfo() API接口
+    // console.log(event.detail)
+    console.log('接收自定义事件')
+    const userInfo = event.detail.userInfo
+    if (userInfo) {
+      this.setData({
+        userInfo,
+        authorized: true
+      })
+    }
+    // console.log(this.data.userInfo)
   },
 
   /**
