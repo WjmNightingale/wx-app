@@ -1,4 +1,13 @@
 // pages/my/my.js
+import {
+  ClassicModel
+} from '../../models/classic.js'
+import {
+  BookModel
+} from '../../models/book.js'
+
+let classicModel = new ClassicModel()
+let bookModel = new BookModel()
 Page({
 
   /**
@@ -8,38 +17,29 @@ Page({
     bgImg: "../../images/my/my@bg.png",
     aboutImg: "../../images/my/about.png",
     myImg: "../../images/my/my.png",
+    likeImg: "../../images/my/like.png",
     authorized: false,
-    userInfo: null
+    userInfo: null,
+    classics: [],
+    myBooksCount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.userAuthorized()
-    // 原来获取用户信息的API
-    // wx.getUserInfo({
-    //   success: function (res) {
-    //     console.log(res)
-    //   },
-    //   fail: function () {
-    //     // fail
-    //   },
-    //   complete: function () {
-    //     // complete
-    //   }
-    // })
+    // this.userAuthorized()
+    // this.getMyBookCount()
+    // this.getMyFavor()
   },
+
   userAuthorized() {
     wx.getSetting({
       success: (data) => {
         if (data.authSetting['scope.userInfo']) {
           // 用户授权了，那么wx.getUserInfo就能获取用户信息
-          console.log('用户授权了')
           wx.getUserInfo({
             success: (res) => {
-              console.log('用户授权了---')
-              console.log(res)
               const userInfo = res.userInfo
               this.setData({
                 userInfo,
@@ -48,7 +48,7 @@ Page({
             }
           })
         } else {
-          console.log('用户未授权')
+          // 用户未授权
           this.setData({
             authorized: false
           })
@@ -56,14 +56,29 @@ Page({
       }
     })
   },
+
+  getMyBookCount() {
+    bookModel.getMyBookCount().then(res => {
+      this.setData({
+        myBooksCount: res.count
+      })
+    })
+  },
+
+  getMyFavor() {
+    classicModel.getMyFavor(data => {
+      this.setData({
+        classics: data
+      })
+    })
+  },
+
   onGetUserInfo(event) {
     // 弹窗
     // 是否授权
     // API
     // button 组件 UI 让用户主动点击button
     // wx.getUserInfo() API接口
-    // console.log(event.detail)
-    console.log('接收自定义事件')
     const userInfo = event.detail.userInfo
     if (userInfo) {
       this.setData({
@@ -71,8 +86,20 @@ Page({
         authorized: true
       })
     }
-    // console.log(this.data.userInfo)
   },
+
+  onPreviewTap(event) {
+    // 跳转 参考微信小程序路由
+    console.log('准备路由跳转')
+    wx.navigateTo({
+      url: '/pages/classic-detail/classic-detail?cid=' + event.detail.cid + '&type=' + event.detail.type
+    })
+  },
+
+  onJumpToAbout() {
+    // 跳转关于页面
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -85,7 +112,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.userAuthorized()
+    this.getMyBookCount()
+    this.getMyFavor()
   },
 
   /**

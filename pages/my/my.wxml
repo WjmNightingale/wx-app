@@ -15,18 +15,29 @@
   <view class="about-container">
     <view class="about-us">
       <image class="about-us-img" src="{{aboutImg}}"></image>
-      <text class="description">关于我们</text>
+      <text class="description">关于我</text>
     </view>
     <view class="about-us">
-      <text class="description">喜欢的书</text>
+      <text class="book-num">{{myBooksCount}}</text>
+      <text class="description">喜欢</text>
     </view>
-    <!-- 获取用户信息 -->
-    <!-- 如何获取 -->
-    <!-- 改版了好多次 -->
-    <!-- 不需要用户授权,即可显示用户头像和昵称 -->
-    <!-- button组件拉起授权获取用户信息 -->
-    <!-- <button class="default" open-type="getUserInfo" bind:getuserinfo="getUserInfo">
-      授权
-    </button> -->
+  </view>
+  <view class="like-container">
+    <image class="headline" src="{{likeImg}}"></image>
+    <view class="preview-container">
+      <block wx:for="{{classics}}" wx:key="{{index}}">
+        <v-preview able-click="{{false}}" bind:tap="onPreviewTap" class="preview" classic="{{item}}"></v-preview>
+      </block>
+    </view>
   </view>
 </view>
+
+
+<!-- 获取用户信息 -->
+<!-- 如何获取 -->
+<!-- 改版了好多次 -->
+<!-- 不需要用户授权,即可显示用户头像和昵称 -->
+<!-- button组件拉起授权获取用户信息 -->
+<!-- <button class="default" open-type="getUserInfo" bind:getuserinfo="getUserInfo">
+      授权
+    </button> -->

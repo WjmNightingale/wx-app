@@ -15,23 +15,23 @@ class ClassicModel extends HTTP {
     })
   }
 
-  getPrevious(index, sCallback) {
-    this.request({
-      url: `classic/${index}/previous`,
-      success: (res) => {
-        sCallback(res)
-      }
-    })
-  }
+  // getPrevious(index, sCallback) {
+  //   this.request({
+  //     url: `classic/${index}/previous`,
+  //     success: (res) => {
+  //       sCallback(res)
+  //     }
+  //   })
+  // }
 
-  getNext(index, sCallback) {
-    this.request({
-      url: `classic/${index}/next`,
-      success: (res) => {
-        sCallback(res)
-      }
-    })
-  }
+  // getNext(index, sCallback) {
+  //   this.request({
+  //     url: `classic/${index}/next`,
+  //     success: (res) => {
+  //       sCallback(res)
+  //     }
+  //   })
+  // }
 
   getClassic(index, nextOrPrevious, sCallback) {
     // 缓存机制 有缓存，用缓存数据，没缓存，API获取数据
@@ -50,6 +50,22 @@ class ClassicModel extends HTTP {
       // 取缓存值
       sCallback(classic)
     }
+  }
+
+  getClassicById(cid, type, success) {
+    let params = {
+      url: 'classic/' + type + '/' + cid,
+      success: success
+    }
+    this.request(params)
+  }
+
+  getMyFavor(success) {
+    let params = {
+      url: 'classic/favor',
+      success: success
+    }
+    this.request(params)
   }
 
   isFirst(index) {

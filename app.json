@@ -3,7 +3,9 @@
     "pages/classic/classic",
     "pages/book/book",
     "pages/book-detail/book-detail",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/about/about",
+    "pages/classic-detail/classic-detail"
   ],
   "window": {
     "navigationStyle": "default",
@@ -15,7 +17,8 @@
     "backgroundColor": "skyblue"
   },
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "text": "流行",
         "iconPath": "/images/tab/classic.png",
         "selectedIconPath": "/images/tab/classic@highlight.png",
