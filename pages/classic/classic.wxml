@@ -14,5 +14,5 @@
   <v-music wx:if="{{classic.type === 200}}" img="{{classic.image}}" content="{{classic.content}}" audioSrc="{{classic.url}}"
     audioTitle="{{classic.title}}" />
   <v-essay isHidden="{{classic.type !== 300}}" img="{{classic.image}}" content="{{classic.content}}" />
-  <v-nav bind:left="onNext" bind:right="onPrevious" class="nav" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" />
+  <v-nav class="nav" bind:left="onNext" bind:right="onPrevious" title="{{classic.title}}" first="{{first}}" latest="{{latest}}" />
 </view>
